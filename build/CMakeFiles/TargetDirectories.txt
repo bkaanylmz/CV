@@ -1,0 +1,3 @@
+/Users/bektas/Desktop/Devo/CV/build/CMakeFiles/MyProject.dir
+/Users/bektas/Desktop/Devo/CV/build/CMakeFiles/edit_cache.dir
+/Users/bektas/Desktop/Devo/CV/build/CMakeFiles/rebuild_cache.dir
