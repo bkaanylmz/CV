@@ -1,18 +1,47 @@
 #include <iostream>
+#include <opencv2/opencv.hpp>
+
 using namespace std;
+using namespace cv;
 
-int main() {
+int main(int argc, char** argv) {
 
-    int rows;
+    // Load the video file
+    VideoCapture cap("/Users/bektas/Desktop/Drone/Drone1/100MEDIA/DJI_0058.MP4");
 
-    cout << "Enter number of rows: ";
-    cin >> rows;
-
-    for(int i = 1; i <= rows; ++i) {
-        for(int j = 1; j <= i; ++j) {
-            cout << "* ";
-        }
-        cout << "\n";
+    // Check if the video file was opened successfully
+    if (!cap.isOpened()) {
+        cerr << "Error: could not open video file" << endl;
+        return -1;
     }
+
+    // Create a window to display the video frames
+    namedWindow("Video", WINDOW_NORMAL);
+
+    // Loop over the video frames and display them in the window
+    while (true) {
+
+        // Read the next frame from the video file
+        Mat frame;
+        cap.read(frame);
+
+        // Check if the frame was read successfully
+        if (frame.empty()) {
+            break;
+        }
+
+        // Display the current frame in the window
+        imshow("Video", frame);
+
+        // Wait for a key press (or 30 milliseconds) to allow the frame to be displayed
+        if (waitKey(30) >= 0) {
+            break;
+        }
+    }
+
+    // Release the video file and destroy the window
+    cap.release();
+    destroyAllWindows();
+
     return 0;
 }
